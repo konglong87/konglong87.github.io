@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "http://konglong87.github.io"
 defaultContentLanguage = "zh"
 languageCode = "zh_GN"
 title = "孙大哥带着小黑 "
@@ -71,6 +71,33 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
   [[params.social]]
     name = "github"
     url = "https://github.com/"
+
+
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+
+  [[related.indices]]
+    name = "keywords"
+    weight = 100
+    includeNewer = true
+    toLower = true
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+    includeNewer = true
+    toLower = true
+
+  [[related.indices]]
+    name = "date"
+    weight = 1
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
 
 [menu]
 

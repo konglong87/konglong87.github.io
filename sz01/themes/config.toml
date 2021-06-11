@@ -1,1 +1,17 @@
-theme = "hermit"
+name = "Hermit"
+license = "MIT"
+description = "A minimal and fast sun  for sz."
+homepage = "https://konglong87.github.io"
+tags = ["blog", "minimal", "dark", "responsive"]
+features = [
+  "single column",
+  "featured image",
+  "social icons",
+  "google analytics",
+  "disqus"
+]
+min_version = 0.43
+
+[author]
+  name = "Track3"
+  homepage = "https://www.xxxlbox.com"
