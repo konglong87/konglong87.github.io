@@ -1,5 +1,5 @@
 baseURL = "http://konglong87.github.io"
-defaultContentLanguage = "zh"
+defaultContentLanguage = "en"
 languageCode = "zh_GN"
 title = "孙大哥带着小黑 "
 theme = "hermit"
