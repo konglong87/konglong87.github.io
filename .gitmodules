@@ -1,0 +1,4 @@
+[submodule "themes/jane"]
+	path = themes/jane
+	url = https://github.com/spech66/bootstrap-bp-hugo-startpage
+	branch = master
