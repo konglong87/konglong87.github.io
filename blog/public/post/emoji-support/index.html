@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Emoji Support - 🦖</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Emoji can be enabled in a Hugo project in a number of ways." />
+  <meta name="author" content="konglong" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://konglong87.github.io/main.min.css" />
+
+  
+  <script
+    defer
+    src="https://konglong87.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://konglong87.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/62b467247e48309431fc393839542688?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://konglong87.github.io/twitter.svg" />
+  
+  <link rel="preload" as="image" href="https://konglong87.github.io/github.svg" />
+  
+  <link rel="preload" as="image" href="https://konglong87.github.io/instagram.svg" />
+  
+
+  
+  <link rel="icon" href="https://konglong87.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://konglong87.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.82.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Emoji Support" />
+<meta property="og:description" content="Guide to emoji usage in Hugo" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konglong87.github.io/post/emoji-support/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-03-05T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-03-05T00:00:00&#43;00:00" />
+
+
+  
+  <meta itemprop="name" content="Emoji Support">
+<meta itemprop="description" content="Guide to emoji usage in Hugo"><meta itemprop="datePublished" content="2019-03-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-03-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="164">
+<meta itemprop="keywords" content="emoji," />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Emoji Support"/>
+<meta name="twitter:description" content="Guide to emoji usage in Hugo"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="https://konglong87.github.io/"
+      >🦖</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >About</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >Contact</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/examplesite/content/post/goisforlovers/"
+        >(Hu)go Template Primer</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/examplesite/content/about/"
+        >About Hugo</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/examplesite/content/post/hugoisforlovers/"
+        >Getting Started with Hugo</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href=""
+        >tutorials</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/konglong"
+        target="_blank"
+        rel="me"
+      >
+        twitter
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/konglong"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./instagram.svg)"
+        href="https://instagram.com/konglong"
+        target="_blank"
+        rel="me"
+      >
+        instagram
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Emoji Support</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>:date_medium</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>konglong</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p>Emoji can be enabled in a Hugo project in a number of ways.</p>
+<p>The <a href="https://gohugo.io/functions/emojify/"><code>emojify</code></a> function can be called directly in templates or <a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes">Inline Shortcodes</a>.</p>
+<p>To enable emoji globally, set <code>enableEmoji</code> to <code>true</code> in your site&rsquo;s <a href="https://gohugo.io/getting-started/configuration/">configuration</a> and then you can type emoji shorthand codes directly in content files; e.g.</p>
+<p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
+<br>
+<p>The <a href="http://www.emoji-cheat-sheet.com/">Emoji cheat sheet</a> is a useful reference for emoji shorthand codes.</p>
+<hr>
+<p><strong>N.B.</strong> The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">.emoji {
+font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+}</code></pre></div>
+
+
+<style>
+.emojify {
+	font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+	font-size: 2rem;
+	vertical-align: middle;
+}
+@media screen and (max-width:650px) {
+  .nowrap {
+    display: block;
+    margin: 25px 0;
+  }
+}
+</style></section>
+
+  
+  
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="https://konglong87.github.io/tags/emoji"
+      >emoji</a
+    >
+    
+  </footer>
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://konglong87.github.io/post/math-typesetting/"
+      ><span class="mr-1.5">←</span><span>Math Typesetting</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://konglong87.github.io/post/read/"
+      ><span>如何在github.io搭建Hugo博客?</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://konglong87.github.io">🦖</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>
