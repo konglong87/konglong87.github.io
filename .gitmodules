@@ -1,4 +1,0 @@
-[submodule "blog/themes/pager"]
-	path = blog/themes/pager
-	url = https://github.com/nanxiaobei/hugo-paper.git
-	branch = master
