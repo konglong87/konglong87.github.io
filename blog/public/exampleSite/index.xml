@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ExampleSites on My New Hugo Site</title>
-    <link>http://example.org/examplesite/</link>
-    <description>Recent content in ExampleSites on My New Hugo Site</description>
+    <title>ExampleSites on 🦖</title>
+    <link>https://konglong87.github.io/examplesite/</link>
+    <description>Recent content in ExampleSites on 🦖</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/examplesite/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://konglong87.github.io/examplesite/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a New Theme</title>
-      <link>http://example.org/examplesite/content/post/creating-a-new-theme/</link>
+      <link>https://konglong87.github.io/examplesite/content/post/creating-a-new-theme/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/examplesite/content/post/creating-a-new-theme/</guid>
+      <guid>https://konglong87.github.io/examplesite/content/post/creating-a-new-theme/</guid>
       <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
 We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     
     <item>
       <title>Migrate to Hugo from Jekyll</title>
-      <link>http://example.org/examplesite/content/post/migrate-from-jekyll/</link>
+      <link>https://konglong87.github.io/examplesite/content/post/migrate-from-jekyll/</link>
       <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/examplesite/content/post/migrate-from-jekyll/</guid>
+      <guid>https://konglong87.github.io/examplesite/content/post/migrate-from-jekyll/</guid>
       <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
 ▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
 ▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
@@ -30,10 +31,10 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
     
     <item>
       <title>About Hugo</title>
-      <link>http://example.org/examplesite/content/about/</link>
+      <link>https://konglong87.github.io/examplesite/content/about/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/examplesite/content/about/</guid>
+      <guid>https://konglong87.github.io/examplesite/content/about/</guid>
       <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
 It makes use of a variety of open source projects including:
  https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
@@ -41,20 +42,20 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>(Hu)go Template Primer</title>
-      <link>http://example.org/examplesite/content/post/goisforlovers/</link>
+      <link>https://konglong87.github.io/examplesite/content/post/goisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/examplesite/content/post/goisforlovers/</guid>
+      <guid>https://konglong87.github.io/examplesite/content/post/goisforlovers/</guid>
       <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
 This document is a brief primer on using Go templates.</description>
     </item>
     
     <item>
       <title>Getting Started with Hugo</title>
-      <link>http://example.org/examplesite/content/post/hugoisforlovers/</link>
+      <link>https://konglong87.github.io/examplesite/content/post/hugoisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/examplesite/content/post/hugoisforlovers/</guid>
+      <guid>https://konglong87.github.io/examplesite/content/post/hugoisforlovers/</guid>
       <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
 Save it somewhere specific as we will be using it in the next step.
 More complete instructions are available at Install Hugo

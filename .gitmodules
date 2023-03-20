@@ -2,3 +2,7 @@
 	path = themes/jane
 	url = https://github.com/spech66/bootstrap-bp-hugo-startpage
 	branch = master
+[submodule "blog/themes/pager"]
+	path = blog/themes/pager
+	url = https://github.com/nanxiaobei/hugo-paper.git
+	branch = master
