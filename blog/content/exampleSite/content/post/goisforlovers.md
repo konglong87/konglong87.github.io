@@ -1,5 +1,5 @@
 +++
-title = "喜欢"
+title = "不"
 description = ""
 tags = [
     "go",
@@ -14,7 +14,7 @@ categories = [
     "golang",
 ]
 menu = "main"
-weight= 5
+weight= 6
 +++
 
 Hugo uses the excellent [Go][] [html/template][gohtmltemplate] library for

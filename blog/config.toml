@@ -33,17 +33,21 @@ title = "🦖"
       unsafe = true
 
 [menu]
-
   [[menu.main]]
     identifier = "about"
-    name = "About"
+    name = "喜"
     url = "/about/"
-    weight = 10
+    weight = 1
   [[menu.main]]
     identifier = "contact"
-    name = "Contact"
+    name = "欢"
     url = "/contact/"
-    weight = 10
+    weight = 2
+   [[menu.main]]
+     identifier = "contact2"
+     name = "永"
+     url = "/about/"
+     weight = 3
 
 [taxonomies]
 category = "categories"
