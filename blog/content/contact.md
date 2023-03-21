@@ -1,10 +1,10 @@
 +++
-title = "Contact"
+title = "爱也是"
 description = "Hugo, the world's fastest framework for building websites"
 date = "2019-02-28"
 aliases = ["about-us", "about-hugo", "contact"]
 author = "konglong"
 +++
 
-- [github.com/nanxiaobei](https://github.com/nanxiaobei)
-- [lee.so](https://lee.so)
+- [k.l](http://konglong87.github.io/)
+- [s.y](http://konglong87.github.io/)

@@ -1,5 +1,5 @@
 +++
-title = "About Hugo"
+title = "喜欢"
 date = "2014-04-09"
 menu = "main"
 +++

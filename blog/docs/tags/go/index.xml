@@ -4,18 +4,17 @@
     <title>go on 🦖</title>
     <link>https://konglong87.github.io/tags/go/</link>
     <description>Recent content in go on 🦖</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <generator>🌇</generator>
+    <language>zh</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
     <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://konglong87.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>(Hu)go Template Primer</title>
+      <title>♥＾▽＾♥</title>
       <link>https://konglong87.github.io/examplesite/content/post/goisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>https://konglong87.github.io/examplesite/content/post/goisforlovers/</guid>
-      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
-This document is a brief primer on using Go templates.</description>
+      <description>孔秘记录孙师傅的点点滴滴</description>
     </item>
     
     <item>

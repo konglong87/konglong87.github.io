@@ -1,5 +1,5 @@
 +++
-title = "(Hu)go Template Primer"
+title = "喜欢"
 description = ""
 tags = [
     "go",
@@ -14,6 +14,7 @@ categories = [
     "golang",
 ]
 menu = "main"
+weight= 5
 +++
 
 Hugo uses the excellent [Go][] [html/template][gohtmltemplate] library for
