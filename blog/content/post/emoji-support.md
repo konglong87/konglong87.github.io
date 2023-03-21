@@ -18,9 +18,12 @@ tags = [
 
 <p><span class="nowrap"><span class="emojify">💑</span> <code>:一起散步步:</code></span> </p>
 <p><span class="nowrap"><span class="emojify">💑</span> <code>:一起吃饭饭:</code></span> </p>
+<p><span class="nowrap"><span class="emojify">💑</span> <code>:一起睡觉觉:</code></span> </p>
+<p><span class="nowrap"><span class="emojify">💑</span> <code>:一起打豆豆:</code></span> </p>
 <p><span class="nowrap"><span class="emojify">💑</span> <code>:一起看电影:</code></span></p>
 <p><span class="nowrap"><span class="emojify">💑</span> <code>:一起去兜风:</code></span></p>
 <p><span class="nowrap"><span class="emojify">💑</span> <code>:一起望星星:</code></span></p>
+<p><span class="nowrap"><span class="emojify">💑</span> <code>:一起赏花花:</code></span></p>
 
 
 ---
@@ -28,7 +31,7 @@ tags = [
 **一起** 
 {{< highlight html >}}
 .一起 {
-去做 很多事
+去做 很多事.....
 }
 {{< /highlight >}}
 
