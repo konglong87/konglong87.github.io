@@ -10,7 +10,7 @@ msg="[修改] rebuilding site $(date)"
 if [ -n "$*" ]; then
     msg="$*"
 fi
-
+git add content/post/.
 git commit -am "$msg"
 git push
 echo "[发布完成] all done."
