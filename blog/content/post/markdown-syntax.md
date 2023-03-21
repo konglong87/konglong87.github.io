@@ -1,19 +1,19 @@
-+++
-author = "konglong"
-title = "相守相惜"
-date = "2019-03-11"
-description = "遇见是缘分，合拍更是少数，"
-tags = [
+---
+author: "konglong"
+title:  "相守相惜"
+date:  "2019-03-11"
+description: "遇见是缘分，合拍更是少数，"
+tags: 
+- "相守"
+- "相惜"
+- "相依"
+
+categories:  [
     "相守",
-    "相惜",
-    "相依",
 ]
-categories = [
-    "相守",
-]
-series = ["Themes Guide"]
-aliases = ["migrate-from-jekyl"]
-+++
+series:  ["Themes Guide"]
+aliases:  ["migrate-from-jekyl"]
+---
 
 相遇相识相知还需要相惜，相遇相识相知不相惜，最后便是分崩和离析，每个人都不希望孤独，只是不想勉强自己！
 都希望人生的路上有人相知相依。
