@@ -11,6 +11,6 @@ if [ -n "$*" ]; then
     msg="$*"
 fi
 
-git commit -am '$msg'
+git commit -am "$msg"
 git push
 echo "all done."
