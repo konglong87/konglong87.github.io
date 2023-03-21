@@ -1,7 +1,7 @@
 +++
 author = "konglong"
-title = "Rich Content"
-date = "2019-03-10"
+title = "富"
+date = "2029-01-10"
 description = "A brief description of Hugo Shortcodes"
 tags = [
     "shortcodes",

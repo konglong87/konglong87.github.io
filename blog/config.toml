@@ -1,9 +1,9 @@
 baseURL = "https://konglong87.github.io"
 # title = "Hugo Themes2"
-author = "Steve Francia"
-copyright = "Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved."
+author = "KongLong"
+copyright = "Copyright © 2008–2099, KongLong and the sy; all rights reserved."
 paginate = 3
-languageCode = "en"
+languageCode = "zh"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 # prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
