@@ -14,7 +14,7 @@ theme = "hugo-paper"
 title = "🦖"
 
 [params]
-  color = 'light'   # linen, wheat, gray, light
+  color = 'wheat'   # linen, wheat, gray, light
 
   twitter = 'konglong'
   github = 'konglong87'
@@ -33,21 +33,47 @@ title = "🦖"
       unsafe = true
 
 [menu]
+ [[menu.main]]
+    identifier = "about0"
+    name = "❤️"
+    url = "/about/"
+    weight = 1
   [[menu.main]]
     identifier = "about"
     name = "喜"
     url = "/about/"
-    weight = 1
+    weight = 2
   [[menu.main]]
     identifier = "contact"
     name = "欢"
     url = "/contact/"
-    weight = 2
+    weight = 4
    [[menu.main]]
      identifier = "contact2"
      name = "永"
      url = "/about/"
-     weight = 3
+     weight = 5
+   [[menu.main]]
+      identifier = "about1"
+      name = "不"
+      url = "/about/"
+      weight = 6
+   [[menu.main]]
+       identifier = "contact12"
+       name = "过"
+       url = "/contact/"
+       weight = 7
+   [[menu.main]]
+       identifier = "contact22"
+       name = "时"
+       url = "/about/"
+       weight = 9
+   [[menu.main]]
+       identifier = "contact25"
+       name = "❤️"
+       url = "/about/"
+       weight = 19
+
 
 [taxonomies]
 category = "categories"
