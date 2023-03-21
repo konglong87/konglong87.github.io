@@ -2,7 +2,7 @@
 date: 2014-03-10
 linktitle: Migrating from Jekyll
 menu:
-  main:
+  mains:
     parent: ❤️ 
 prev: /tutorials/mathjax
 title: Migrate to Hugo from Jekyll
