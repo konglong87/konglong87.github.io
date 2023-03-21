@@ -1,31 +1,26 @@
 ---
-author: lee.so
-title: Math Typesetting
+author: 恐龙
+title: 插曲
 date: 2019-03-08
-description: A brief guide to setup KaTeX
+description: 一个工作引发的插曲
 math: true
 ---
 
-Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.
-
+工作在异地，接受不了异地
 <!--more-->
 
-In this example we will be using [KaTeX](https://katex.org/)
+异地是一个考验，没有人愿意奋斗，也没有愿意996 [KaTeX](https://katex.org/)
 
-- Create a partial under `/layouts/partials/math.html`
-- Within this partial reference the [Auto-render Extension](https://katex.org/docs/autorender.html) or host these scripts locally.
-- Include the partial in your templates like so:
 
 ```bash
-{{ if or .Params.math .Site.Params.math }}
-{{ partial "math.html" . }}
-{{ end }}
+{{ 如不是为了碎银几两，谁愿意背井离乡 }}
+
+{{ 奋斗的人，离乡的人 }}
+
+{{ 奋斗与爱情只能二选一 }}
+
+{{ 异地不是原罪，贫困才是 }}
 ```
-
-- To enable KaTex globally set the parameter `math` to `true` in a project's configuration
-- To enable KaTex on a per page basis include the parameter `math: true` in content files
-
-**Note:** Use the online reference of [Supported TeX Functions](https://katex.org/docs/supported.html)
 
 {{< math.inline >}}
 {{ if or .Page.Params.math .Site.Params.math }}
@@ -37,16 +32,16 @@ In this example we will be using [KaTeX](https://katex.org/)
 {{ end }}
 {{</ math.inline >}}
 
-### Examples
+### 如果奋斗是为了更好的爱情呢？
 
 {{< math.inline >}}
 
 <p>
-Inline math: \(\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…\)
+找一个普通的人平平淡淡也好: \(\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…\)
 </p>
 {{</ math.inline >}}
 
-Block math:
+找一个互相喜欢的创造小美好❤️:
 
 $$
  \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }

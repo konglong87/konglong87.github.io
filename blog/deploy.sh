@@ -13,4 +13,4 @@ fi
 
 git commit -am "$msg"
 git push
-echo "all done."
+echo "[发布完成] all done."
