@@ -3,7 +3,7 @@
 set -e
 
 printf "发布 Deploying updates to KL GitHub...\n"
-
+hugo
 cp -r public/ ../docs
 
 msg="[修改] rebuilding site $(date)"
