@@ -1,5 +1,4 @@
 baseURL = "https://konglong87.github.io"
-# title = "Hugo Themes2"
 author = "KongLong"
 copyright = "Copyright © 2008–2099, KongLong and the sy; all rights reserved."
 paginate = 3
@@ -15,13 +14,14 @@ theme = "hugo-paper"
 title = "🦖"
 
 [params]
-  color = 'linen'
+  color = 'light'   # linen, wheat, gray, light
 
   twitter = 'konglong'
   github = 'konglong'
   instagram = 'konglong'
 
-  avatar = 'konglong@gmail.com'
+ #avatar = 'https://img1.baidu.com/it/u=1682993514,2737209100&fm=253&fmt=auto&app=138&f=JPEG?w=902&h=500'
+  avatar = 'https://konglong87.github.io/avatar1.png'
   name = 'konglong🦖'
   bio = 'KL ❤️ SY'
 # ------------------------------
