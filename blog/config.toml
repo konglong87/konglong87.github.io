@@ -1,7 +1,7 @@
 baseURL = "https://konglong87.github.io"
 author = "KongLong"
 copyright = "Copyright © 2008–2099, KongLong and the sy; all rights reserved."
-paginate = 3
+paginate = 5
 languageCode = "zh"
 #DefaultContentLanguage = "en"
 enableInlineShortcodes = true
