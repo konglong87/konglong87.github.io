@@ -4,7 +4,7 @@ set -e
 
 printf "发布 Deploying updates to KL GitHub...\n"
 hugo
-cp -r ../blog/public/ docs
+cp -r ../blog/public/ ../docs
 
 msg="[修改] rebuilding site $(date)"
 if [ -n "$*" ]; then
