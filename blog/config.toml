@@ -12,6 +12,7 @@ ignoreErrors = ["error-remote-getjson"]
 # ------------------------------
 theme = "hugo-paper"
 title = "🦖"
+buildfuture = true
 
 [params]
   color = 'wheat'   # linen, wheat, gray, light
