@@ -48,7 +48,7 @@ buildfuture = true
   [[menu.main]]
     identifier = "contact"
     name = "欢"
-    url = "/contact/"
+    url = "/together/"
     weight = 4
    [[menu.main]]
      identifier = "contact2"
