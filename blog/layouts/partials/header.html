@@ -1,0 +1,54 @@
+<header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold" href="{{ `/` | absURL }}">{{ site.Title }}</a>
+    <button type="button" class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer"
+      style="background-image: url({{ `theme.png` | absURL }})"
+      aria-label="切换深色模式" aria-pressed="false" title="切换深色模式"></button>
+  </div>
+  <button type="button" class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    aria-label="打开导航" aria-expanded="false" aria-controls="site-navigation"></button>
+  <script>
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => htmlClass.remove('not-ready'), 10);
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      const expanded = htmlClass.toggle('open');
+      btnMenu.setAttribute('aria-expanded', String(expanded));
+      btnMenu.setAttribute('aria-label', expanded ? '关闭导航' : '打开导航');
+    });
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const btnDark = document.querySelector('.btn-dark');
+    const lightBg = `{{ $.Scratch.Get "bg_color" }}`.replace(/"/g, '');
+    const readDark = () => { try { return localStorage.getItem('dark'); } catch { return null; } };
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass.toggle('dark', isDark);
+      btnDark.setAttribute('aria-pressed', String(isDark));
+      try { localStorage.setItem('dark', String(isDark)); } catch { /* The theme still works without storage. */ }
+    };
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkVal = readDark();
+    setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    darkScheme.addEventListener('change', event => setDark(event.matches));
+    btnDark.addEventListener('click', () => setDark(!htmlClass.contains('dark')));
+  </script>
+  <div id="site-navigation" class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none">
+    {{ with site.Menus.main }}
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6" aria-label="主导航">
+      {{ range . }}{{ if .Name }}
+      <a class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}{{ end }}
+    </nav>
+    {{ end }}
+    {{ with $.Scratch.Get "social_list" }}
+    <nav class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6" aria-label="社交链接">
+      {{ range . }}
+      <a class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url({{ printf `%s.svg` . | absURL }})"
+        href="{{ if eq . `rss` }}{{ `index.xml` | absURL }}{{ else if eq . `mastodon` }}{{ index site.Params . }}{{ else }}https://{{ . }}.com/{{ if eq . `linkedin` }}in/{{ end }}{{ index site.Params . }}{{ end }}"
+        target="_blank" rel="{{ if eq . `rss` }}alternate{{ else }}me{{ end }} noopener noreferrer">{{ . }}</a>
+      {{ end }}
+    </nav>
+    {{ end }}
+  </div>
+</header>

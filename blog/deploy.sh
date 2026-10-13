@@ -1,17 +1,5 @@
 #!/bin/sh
-
-set -e
-
-printf "发布 Deploying updates to KL GitHub...\n"
-hugo
-cp -r ../blog/public/ ../docs
-
-msg="[修改] rebuilding site $(date)"
-if [ -n "$*" ]; then
-    msg="$*"
-fi
-git add ../blog/content/post/.
-git add ../docs/.
-git commit -am "$msg"
-git push
-echo "[发布完成] all done."
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+"$ROOT/scripts/build.sh" "$ROOT/docs"
+printf '\nBuild complete. Review docs/ and run the project tests before committing and pushing.\n'

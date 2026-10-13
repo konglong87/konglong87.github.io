@@ -1,0 +1,18 @@
+{{- $projects := where site.RegularPages "Section" "projects" -}}
+{{- $projects = where $projects "Params.featured" true -}}
+{{- if $projects -}}
+<section class="projects-featured" aria-labelledby="featured-projects-title">
+  <div class="projects-section-heading">
+    <div>
+      <p class="projects-kicker">Selected work</p>
+      <h2 id="featured-projects-title">精选项目</h2>
+    </div>
+    <a class="projects-more-link" href="{{ "/projects/" | relURL }}">查看项目集 →</a>
+  </div>
+  <div class="projects-featured-grid">
+    {{- range sort $projects "Params.project_order" "asc" -}}
+    {{ partial "project-card.html" . }}
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}

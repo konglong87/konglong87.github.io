@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="projects-index-header">
+  <p class="projects-kicker">Selected work · 精选作品</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="projects-index-intro">{{ . }}</div>{{ end }}
+</header>
+<section class="projects-list" aria-label="精选项目列表">
+  {{ range sort .RegularPages "Params.project_order" "asc" }}{{ partial "project-card.html" . }}{{ end }}
+</section>
+<p class="projects-back"><a href="{{ `/` | relURL }}">← 返回首页</a></p>
+{{ end }}

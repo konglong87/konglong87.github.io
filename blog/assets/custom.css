@@ -1,0 +1,119 @@
+/* Small, theme-scoped project extension. Existing posts keep Paper's styles. */
+:root {
+  --project-border: rgba(0, 0, 0, 0.13);
+  --project-surface: rgba(255, 255, 255, 0.38);
+  --project-muted: rgba(0, 0, 0, 0.58);
+  --project-ink: #171717;
+  --project-button-ink: #fff;
+}
+.dark {
+  --project-border: rgba(255, 255, 255, 0.2);
+  --project-surface: rgba(255, 255, 255, 0.06);
+  --project-muted: rgba(255, 255, 255, 0.62);
+  --project-ink: #f5f5f5;
+  --project-button-ink: #171717;
+}
+.projects-featured {
+  margin: 3rem 0 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--project-border);
+}
+.projects-section-heading, .project-card-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.projects-section-heading { margin-bottom: 1.35rem; }
+.projects-section-heading h2, .projects-index-header h1 { margin: 0; line-height: 1.2; }
+.projects-kicker, .project-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--project-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  line-height: 1.7;
+}
+.projects-more-link, .project-card-link, .projects-back {
+  color: var(--project-ink);
+  font-size: 0.9rem;
+  text-decoration: none;
+  line-height: 1.6;
+}
+.projects-more-link { white-space: nowrap; }
+.projects-more-link:hover, .project-card-link:hover, .projects-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.projects-featured-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.project-card {
+  padding: 1.35rem;
+  border: 1px solid var(--project-border);
+  border-radius: 0.85rem;
+  background: var(--project-surface);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.project-card h3 { margin: 0.8rem 0 0.65rem; font-size: 1.28rem; line-height: 1.3; }
+.project-card h3 a { text-decoration: none; }
+.project-card p { margin: 0 0 1.15rem; font-size: 0.98rem; line-height: 1.75; }
+.project-card-meta { color: var(--project-muted); font-size: 0.72rem; gap: 0.5rem; }
+.project-card-meta span:last-child { white-space: nowrap; }
+.posts-heading { margin: 0 0 2rem !important; font-size: 1.2rem; color: var(--project-muted); }
+.projects-index-header { margin-bottom: 2.5rem; }
+.projects-index-intro { margin-top: 1.25rem; font-size: 1.05rem; line-height: 1.9; }
+.projects-list { display: grid; gap: 1rem; }
+.projects-list .project-card h3 { font-size: 1.65rem; }
+.projects-back { display: inline-block; margin: 1.5rem 0; }
+.project-article > .projects-back { margin: -1.5rem 0 1.5rem; }
+.project-article-header { margin-bottom: 2.5rem; }
+.project-article-header h1 { margin: 0.55rem 0 1rem; overflow-wrap: anywhere; }
+.project-lede { margin: 0 0 1rem; font-size: 1.15rem; line-height: 1.8; }
+.project-article-meta { margin: 0 0 1.5rem; color: var(--project-muted); font-size: 0.8rem; }
+.project-links { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid var(--project-border);
+  border-radius: 999px;
+  color: var(--project-ink);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.project-link-primary { background: var(--project-ink); color: var(--project-button-ink); border-color: var(--project-ink); }
+.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.project-content img { width: 100%; height: auto; border-radius: 0.6rem; border: 1px solid var(--project-border); }
+.project-content p:has(> em:only-child) { font-size: 0.82rem; color: var(--project-muted); }
+.project-content pre { margin-inline: 0; max-width: 100%; overflow-x: auto; }
+.project-content table { display: block; width: 100%; overflow-x: auto; }
+.project-content td, .project-content th { min-width: 8rem; padding-right: 1rem; }
+.project-related { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--project-border); }
+.project-related > a:not(.projects-back) { font-size: 1.2rem; }
+.project-related > p:not(.projects-kicker) { font-size: 0.9rem; color: var(--project-muted); }
+a:focus-visible, [role="button"]:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 3px; }
+@media (max-width: 640px) {
+  .projects-featured-grid { grid-template-columns: 1fr; }
+  .projects-featured { margin-top: 2.5rem; }
+  .projects-section-heading { align-items: flex-end; }
+  .project-card { padding: 1.15rem; }
+  .project-article-header h1 { font-size: 2.35rem; }
+  .project-lede { font-size: 1.05rem; }
+  .project-content { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-article *, .projects-featured *, .projects-list * { transition: none !important; animation: none !important; }
+}
+
+/* A dynamic Tailwind class would not be in Paper's precompiled stylesheet. */
+.btn-dark { padding: 0; border: 0; background-color: transparent; background-repeat: no-repeat; background-size: auto 24px; background-position: left center; }
+.dark .btn-dark { background-position: right center; }
+.btn-menu { padding: 0; border: 0; background: transparent; }
+@media (max-width: 1023px) {
+  .nav-wrapper nav:first-of-type { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; max-width: 22rem; margin-inline: auto; }
+  .nav-wrapper nav:first-of-type a { line-height: 3rem; min-width: 2rem; }
+  .nav-wrapper nav:first-of-type a[href="/projects/"] { flex-basis: 100%; margin-top: 1rem; }
+}
+.btn-dark { margin-left: 1.5rem; }
+@media (max-width: 1023px) {
+  .nav-wrapper { visibility: hidden; pointer-events: none; }
+  .open .nav-wrapper { visibility: visible; pointer-events: auto; }
+}

@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="project-article">
+  <a class="projects-back" href="{{ `/projects/` | relURL }}">← 精选项目</a>
+  <header class="project-article-header">
+    <p class="project-eyebrow">{{ .Params.project_kicker }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="project-lede">{{ .Params.project_tagline }}</p>
+    <p class="project-article-meta"><time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "2006 年 1 月 2 日" }}</time> · {{ .Params.project_status }}</p>
+    <div class="project-links" aria-label="项目资源">
+      <a class="project-link project-link-primary" href="{{ .Params.repo_url }}" target="_blank" rel="noopener noreferrer">查看 GitHub ↗</a>
+      {{ with .Params.release_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">下载桌面端 ↗</a>{{ end }}
+      {{ with .Params.docs_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Params.docs_label | default "项目文档" }} ↗</a>{{ end }}
+    </div>
+  </header>
+  <div class="project-content">{{ .Content }}</div>
+  <footer class="project-related">
+    <p class="projects-kicker">另一个精选项目</p>
+    {{ $current := .RelPermalink }}
+    {{ range where site.RegularPages "Section" "projects" }}{{ if ne .RelPermalink $current }}
+      <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
+      <p>{{ .Params.project_summary }}</p>
+    {{ end }}{{ end }}
+    <a class="projects-back" href="{{ `/projects/` | relURL }}">← 返回项目集</a>
+  </footer>
+</article>
+{{ end }}

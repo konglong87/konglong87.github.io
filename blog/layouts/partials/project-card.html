@@ -1,0 +1,6 @@
+<article class="project-card">
+  <div class="project-card-meta"><span>{{ .Params.project_language }}</span><span>{{ .Params.project_status }}</span></div>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ .Params.project_summary }}</p>
+  <a class="project-card-link" href="{{ .RelPermalink }}">阅读项目介绍 <span aria-hidden="true">→</span></a>
+</article>
