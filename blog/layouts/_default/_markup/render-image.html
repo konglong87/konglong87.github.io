@@ -1,0 +1,7 @@
+{{- $image := .Page.Resources.GetMatch .Destination -}}
+{{- $dimensionFormats := slice "jpeg" "png" "gif" "webp" -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ .Text | plainify }}"
+  {{- with $image -}}
+    {{- if in $dimensionFormats .MediaType.SubType }} width="{{ .Width }}" height="{{ .Height }}"{{ end -}}
+  {{- end -}}
+  {{- with .Title }} title="{{ . }}"{{ end -}}>

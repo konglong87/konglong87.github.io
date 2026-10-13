@@ -13,6 +13,7 @@ ignoreErrors = ["error-remote-getjson"]
 
 # ------------------------------
 theme = "hugo-paper"
+themesDir = "vendor"
 title = "🦖"
 buildfuture = true
 

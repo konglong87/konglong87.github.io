@@ -4,20 +4,25 @@
 
 ## 精选项目：手工发布，不自动同步
 
-- `/projects/`：手工挑选的项目集。
-- `/projects/go-e2e/`：本地优先的 AI Coding Agent。
-- `/projects/feeling-to-jargon/`：感觉到专业术语与可执行 Prompt 的翻译层。
+| 文章路径 | 项目 |
+| --- | --- |
+| `/projects/go-e2e/` | go-e2e：本地优先的 AI Coding Agent |
+| `/projects/feeling-to-jargon/` | Feeling to Jargon：感觉到专业术语与 Prompt 的翻译层 |
+| `/projects/study-anything/` | Study Anything：以主动回忆和反馈为核心的学习 Skill |
+| `/projects/superpm/` | superPM：从需求验证到上线复盘的产品工作流 |
+| `/projects/anything-ai/` | Anything-AI：AI 学习资料与实践路线的知识站 |
+| `/projects/free-ai-free-token/` | free-AI-free-token：有来源和核验状态的免费额度目录 |
 
-项目 Markdown 位于 `blog/content/projects/<repo>/index.md`。文章、首页摘要与项目列表均以这份文件的 Front Matter 为唯一来源；截图跟随文章放在同一个 leaf bundle 中。仅 `featured = true` 的项目显示在首页第一屏的精选区，生活文章时间线仍只使用 `post`。
+`/projects/` 汇集以上六篇独立文章，首页精选区也展示这六个项目。项目 Markdown 位于 `blog/content/projects/<slug>/index.md`；文章、首页摘要与项目列表均以 Front Matter 为唯一来源。截图随文章存放在同一个 leaf bundle 中，本地图片通过渲染钩子预留宽高，避免下载后正文跳动。
 
-后续只有明确指定的项目才创建文章。没有 GitHub 项目扫描、同步脚本、定时任务或自动新增机制。
+只有 `featured = true` 的项目显示在首页精选区，生活文章时间线仍只使用 `post`。`project_order` 控制精选项目顺序。后续仅为明确指定的项目创建文章，没有 GitHub 项目扫描、同步脚本、定时任务或自动新增机制。新增时同时更新独立验收清单 `scripts/project-fixtures.json`。
 
-## 构建
+## 构建与发布
 
-仓库沿用旧版 Hugo，避免无关升级导致历史文章的 Front Matter 不兼容。`blog/theme-version.txt` 固定 Paper 的现有主题版本；构建脚本会安装缺失的主题并拒绝覆盖主题中的本地修改。
+仓库沿用 Hugo **0.111.3**，避免无关升级导致历史文章不兼容。`blog/vendor/hugo-paper` 保存现有固定版本的主题运行文件及 MIT 许可证，来源和修订记录见其 `UPSTREAM.md` 与 `blog/theme-version.txt`。构建不再下载主题，也不依赖旧的 `blog/themes` 缓存。
 
 ```bash
-# 需要 Hugo 0.111.3；支持用 HUGO_BIN 指定路径。
+# 需要 Hugo 0.111.3；默认使用 PATH 中的 hugo，也可以明确指定。
 HUGO_BIN=/path/to/hugo-0.111.3 ./scripts/build.sh
 
 # 本地验收构建，不更改发布目录。
@@ -25,24 +30,36 @@ HUGO_BIN=/path/to/hugo-0.111.3 HUGO_BASEURL=http://127.0.0.1:1313/ \
   ./scripts/build.sh .build/preview
 python3 -m http.server 1313 --bind 127.0.0.1 --directory .build/preview
 
-# 验收完成后生成 GitHub Pages 输出；不删除既有静态文章或图片。
-HUGO_BIN=/path/to/hugo-0.111.3 ./scripts/build.sh docs
+# 验证预览输出。
+python3 scripts/check-site.py .build/preview --base-url http://127.0.0.1:1313
+
+# 正式发布：构建 docs → 静态检查 → 提交相关文件 → push origin main。
+HUGO_BIN=/path/to/hugo-0.111.3 ./blog/deploy.sh "build: publish selected projects"
 ```
 
-日常只构建到 `.build` 或根目录 `docs`，不再生成 `blog/public`、`blog/docs` 或 `docs/public` 的嵌套副本。原有历史副本暂不删除，以避免本次改动牵涉既有数据。
+发布脚本仅允许 `main`，会拒绝已暂存的无关文件，剥离继承的预览 `HUGO_BASEURL`，并以 `konglong <konglong@com>` 提交。构建或检查失败时不提交、不推送。未暂存的无关修改不受影响；没有新改动时仍会尝试推送已有提交。
+
+日常仅构建到 `.build` 或根目录 `docs`，不再生成 `blog/public`、`blog/docs` 或 `docs/public` 的嵌套副本。原有历史副本与静态 URL 暂不删除。
 
 ## 验证
 
-浏览器回归测试使用 Playwright，可在已有依赖环境运行；支持 `PLAYWRIGHT_MODULE` 指向已安装的包：
-
 ```bash
+# 静态检查：路由数量、标题、链接、页面元信息 URL、资源和图片宽高。
+python3 scripts/check-site.py docs
+
+# 发布安全回归：隔离临时仓库 + 本地 bare remote，不触及正式远端。
+python3 scripts/test-deploy.py
+
+# 先启动上述预览服务，再用已安装的 Playwright 运行浏览器验收。
 PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-projects.cjs
 ```
 
-覆盖桌面、紧凑桌面、平板、390px/360px 手机宽度；实际点击导航、项目卡片、返回链接、暗色按钮，检查图片加载、主题持久化、页面横向溢出、重复 ID、脚本错误和内部 404，并回归现有文章与首页分页。测试截图输出到 `.build/acceptance`，不提交。
+浏览器验收覆盖 1920/1440/1024px 桌面、768px 平板、390/360/320px 手机与 844×390 横屏。实际操作导航、六张卡片、相关文章、返回入口、键盘 Enter 和暗色切换；检查主题持久化、受限 localStorage、图片加载、慢图布局稳定性、横向溢出、重复 ID、脚本错误、请求失败、内部 404，并回归原有文章与首页分页。可通过 `TEST_BASE_URL`、`TEST_OUTPUT` 指定服务和截图目录。默认截图及 JSON 报告保存在 `.build/acceptance`，不提交。
 
-历史 `exampleSite` 主题示例不参与个人博客构建，避免空菜单和重复菜单；已发布的示例静态 URL 保留，不在本次改动中删除。
+历史 `exampleSite` 主题示例不参与个人博客构建，已发布的示例静态 URL 保留。
 
-## 内容来源
+## 内容来源与边界
 
-两篇文章基于 2026-10-13 的公开 README 和项目文档整理。go-e2e 的 Desktop 图片来自其公开仓库；Feeling to Jargon 的示例通过本地索引查询验证，不伪造产品界面。头像是原头像文件的本地副本，用来避免外部图床影响新页面加载。
+六篇文章基于 2026-10-13 的公开 README 和项目文档整理。go-e2e 的 Desktop 图片来自公开仓库；Feeling to Jargon 的示例经过本地索引查询，不伪造产品界面。新增四篇使用真实架构与使用说明，不杜撰产品截图、用户量或验证结论。
+
+Anything-AI 的知识站是独立 Pages 仓库，不由本博客构建。免费额度文章不收录真实 API key，也不保证模型永久免费、无限额度或始终可用；访问与额度以服务商当时的官方规则为准。

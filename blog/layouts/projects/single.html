@@ -9,17 +9,19 @@
     <div class="project-links" aria-label="项目资源">
       <a class="project-link project-link-primary" href="{{ .Params.repo_url }}" target="_blank" rel="noopener noreferrer">查看 GitHub ↗</a>
       {{ with .Params.release_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">下载桌面端 ↗</a>{{ end }}
+      {{ with .Params.project_site_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Params.project_site_label | default "访问项目" }} ↗</a>{{ end }}
       {{ with .Params.docs_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Params.docs_label | default "项目文档" }} ↗</a>{{ end }}
     </div>
   </header>
   <div class="project-content">{{ .Content }}</div>
   <footer class="project-related">
-    <p class="projects-kicker">另一个精选项目</p>
+    <p class="projects-kicker">更多精选项目</p>
     {{ $current := .RelPermalink }}
-    {{ range where site.RegularPages "Section" "projects" }}{{ if ne .RelPermalink $current }}
-      <a href="{{ .RelPermalink }}">{{ .Title }} →</a>
-      <p>{{ .Params.project_summary }}</p>
-    {{ end }}{{ end }}
+    <ul class="project-related-list">
+      {{ range sort (where site.RegularPages "Section" "projects") "Params.project_order" "asc" }}{{ if ne .RelPermalink $current }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }} →</a><p>{{ .Params.project_summary }}</p></li>
+      {{ end }}{{ end }}
+    </ul>
     <a class="projects-back" href="{{ `/projects/` | relURL }}">← 返回项目集</a>
   </footer>
 </article>

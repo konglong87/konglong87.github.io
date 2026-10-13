@@ -3,3 +3,4 @@ blog/themes
 .build/
 blog/.hugo_build.lock
 blog/resources/_gen/
+__pycache__/
