@@ -35,6 +35,12 @@ buildfuture = true
   seo_author_name = 'KongLong'
   seo_author_url = 'https://github.com/konglong87'
   seo_default_image = '/profile/avatar.png'
+
+  [params.home_banner]
+    kicker = 'KongLong 的公开项目与 AI 实践'
+    slogan = '喜欢永不过时'
+    subtitle = '公开项目、AI Skills、开发工具和实践记录'
+    projects_label = '精选项目'
 # ------------------------------
 
 # needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
@@ -45,50 +51,25 @@ buildfuture = true
 
 [menu]
  [[menu.main]]
-    identifier = "about0"
-    name = "❤️"
-    url = "/about/"
-    weight = 1
+    identifier = 'projects'
+    name = '精选项目'
+    url = '/projects/'
+    weight = 10
   [[menu.main]]
-    identifier = "about"
-    name = "喜"
-    url = "/about/"
-    weight = 2
-  [[menu.main]]
-    identifier = "contact"
-    name = "欢"
-    url = "/together/"
-    weight = 4
-  [[menu.main]]
-    identifier = "projects"
-    name = "项目"
-    url = "/projects/"
+    identifier = 'about'
+    name = '关于'
+    url = '/about/'
     weight = 20
-   [[menu.main]]
-     identifier = "contact2"
-     name = "永"
-     url = "/about/"
-     weight = 5
-   [[menu.main]]
-      identifier = "about1"
-      name = "不"
-      url = "/about/"
-      weight = 6
-   [[menu.main]]
-       identifier = "contact12"
-       name = "过"
-       url = "/contact/"
-       weight = 7
-   [[menu.main]]
-       identifier = "contact22"
-       name = "时"
-       url = "/about/"
-       weight = 9
-   [[menu.main]]
-       identifier = "contact25"
-       name = "❤️"
-       url = "/about/"
-       weight = 19
+  [[menu.main]]
+    identifier = 'together'
+    name = '一起'
+    url = '/together/'
+    weight = 30
+  [[menu.main]]
+    identifier = 'contact'
+    name = '联系'
+    url = '/contact/'
+    weight = 40
 
 
 [taxonomies]

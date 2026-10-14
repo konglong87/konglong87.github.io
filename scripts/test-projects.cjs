@@ -139,8 +139,16 @@ async function verifyAtViewport(browser, viewport) {
     assert.equal(await page.locator('.projects-featured .project-card').count(), PROJECTS.length);
     assert.deepEqual(await page.locator('.project-card h3').allTextContents(), PROJECTS.map(project => project.title));
     assert.ok((await page.locator('main').innerText()).includes('陛下的规矩'));
+    assert.equal(await page.locator('.home-banner-slogan').innerText(), '喜欢永不过时');
+    assert.equal(await page.locator('.home-banner-slogan').evaluate(node => Boolean(node.closest('a'))), false,
+      'Homepage slogan must be decorative text, not a navigation link');
+    const bannerProjects = page.locator('.home-banner-projects');
+    assert.equal(await bannerProjects.getAttribute('href'), '/projects/');
+    await bannerProjects.click();
+    await page.waitForURL(`${BASE}/projects/`, { waitUntil: 'networkidle' });
+    await visit(page, '/');
     await page.locator('main img').evaluate(image => image.decode());
-    assert.ok(await page.locator('.btn-dark').evaluate(button => getComputedStyle(button).backgroundImage.includes('theme.png')));
+    assert.ok(await page.locator('.theme-icon').evaluate(icon => getComputedStyle(icon).backgroundImage.includes('theme.png')));
     if (SCREENSHOT_VIEWPORTS.has(viewport.name)) await snapshot(page, `home-${viewport.name}`);
     await toggleTheme(page, true);
     await page.waitForFunction(() => getComputedStyle(document.body).backgroundColor === 'rgba(0, 0, 0, 0.9)');
@@ -150,15 +158,21 @@ async function verifyAtViewport(browser, viewport) {
     await toggleTheme(page, false);
 
     if (viewport.width < 1024) {
-      await page.getByRole('button', { name: '打开导航' }).click();
+      const menuButton = page.getByRole('button', { name: '打开导航' });
+      await menuButton.click();
+      await page.waitForFunction(() => document.documentElement.classList.contains('open'));
+      await page.keyboard.press('Escape');
+      assert.equal(await page.locator('html').evaluate(element => element.classList.contains('open')), false,
+        'Escape must close the mobile menu');
+      await menuButton.click();
       await page.waitForFunction(() => document.getElementById('site-navigation').getBoundingClientRect().top === 0);
-      const link = page.getByRole('navigation', { name: '主导航' }).getByRole('link', { name: '项目', exact: true });
+      const link = page.getByRole('navigation', { name: '主导航' }).getByRole('link', { name: '精选项目', exact: true });
       const box = await link.boundingBox();
       assert.ok(box.y >= 0 && box.y + box.height <= viewport.height, 'Project navigation fits on-screen');
       if (viewport.name === 'mobile') await snapshot(page, 'mobile-navigation', false);
       await link.click();
     } else {
-      await page.getByRole('navigation', { name: '主导航' }).getByRole('link', { name: '项目', exact: true }).click();
+      await page.locator('.home-banner-projects').click();
     }
     await page.waitForURL(`${BASE}/projects/`, { waitUntil: 'networkidle' });
     assert.equal(await page.locator('h1').innerText(), '精选项目');

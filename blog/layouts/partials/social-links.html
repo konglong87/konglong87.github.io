@@ -1,0 +1,12 @@
+{{- $labels := dict "twitter" "X / Twitter" "github" "GitHub" "instagram" "Instagram" "linkedin" "LinkedIn" "mastodon" "Mastodon" "rss" "RSS 订阅" -}}
+{{- with $.Scratch.Get "social_list" -}}
+<nav class="social-links" aria-label="社交链接">
+  {{- range . -}}
+  <a class="social-link" aria-label="{{ index $labels . }}"
+    href="{{ if eq . `rss` }}{{ `index.xml` | relURL }}{{ else if eq . `mastodon` }}{{ index site.Params . }}{{ else }}https://{{ . }}.com/{{ if eq . `linkedin` }}in/{{ end }}{{ index site.Params . }}{{ end }}"
+    target="_blank" rel="{{ if eq . `rss` }}alternate{{ else }}me{{ end }} noopener noreferrer">
+    <span class="social-icon" style="--url: url({{ printf `%s.svg` . | relURL }})" aria-hidden="true"></span>
+  </a>
+  {{- end -}}
+</nav>
+{{- end -}}

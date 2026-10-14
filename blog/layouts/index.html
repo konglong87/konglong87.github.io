@@ -8,9 +8,8 @@
 <!-- $pages -->
 {{ $pages := union .RegularPages .Sections }}<!---->
 {{ if .IsHome }}<!---->
-{{ $mainSections := site.Params.mainSections | default (slice "post") }}<!---->
-{{ $mainSection := index $mainSections 0 }}<!---->
-{{ $sectionPage := site.GetPage "section" $mainSection }}{{ $pages = $sectionPage.RegularPages }}<!---->
+{{ $sections := site.Params.mainSections | default (slice "post") }}
+{{ $section := site.GetPage "section" (index $sections 0) }}{{ $pages = $section.RegularPages }}<!---->
 {{ end }}
 
 

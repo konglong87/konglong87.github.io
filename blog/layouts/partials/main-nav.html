@@ -1,0 +1,10 @@
+{{- $page := . -}}
+{{- with site.Menus.main -}}
+<nav class="main-nav" aria-label="主导航">
+  {{- range . -}}
+  {{- if .Name -}}
+  <a class="main-nav-link{{ if eq .Identifier `projects` }} main-nav-projects{{ end }}" data-nav-id="{{ .Identifier }}" href="{{ .URL | relURL }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+  {{- end -}}
+  {{- end -}}
+</nav>
+{{- end -}}

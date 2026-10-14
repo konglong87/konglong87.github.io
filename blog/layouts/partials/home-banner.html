@@ -1,0 +1,27 @@
+{{- $banner := site.Params.home_banner -}}
+{{- $projects := where site.RegularPages "Section" "projects" -}}
+{{- $featuredCount := len (where $projects "Params.featured" true) -}}
+{{- $label := $banner.projects_label | default "精选项目" -}}
+{{- $projectsPage := site.GetPage "/projects" -}}
+<header class="site-header home-banner-header">
+  <div class="home-banner-shell">
+    {{ partial "site-brand.html" . }}
+    <div class="home-banner-copy">
+      <p class="home-banner-kicker">{{ $banner.kicker }}</p>
+      <p class="home-banner-slogan">{{ $banner.slogan }}</p>
+      <p class="home-banner-subtitle">{{ $banner.subtitle | default site.Params.description }}</p>
+    </div>
+    {{ with $projectsPage }}
+    <a class="home-banner-projects" href="{{ .RelPermalink }}" aria-label="{{ $label }}，{{ $featuredCount }} 个项目">
+      <span>{{ $label }}</span>
+      <span class="home-banner-project-count">{{ $featuredCount }} 个</span>
+      <span aria-hidden="true">→</span>
+    </a>
+    {{ end }}
+    <div class="home-banner-social">{{ partial "social-links.html" . }}</div>
+    {{ partial "menu-toggle.html" . }}
+    <div id="site-navigation" class="site-navigation home-banner-nav">
+      {{ partial "main-nav.html" . }}
+    </div>
+  </div>
+</header>
