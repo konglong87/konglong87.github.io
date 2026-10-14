@@ -1,11 +1,75 @@
 {
   "publish_base_url": "https://konglong87.github.io",
   "projects": [
-    {"slug": "go-e2e", "title": "go-e2e", "repo": "go-e2e", "required_content": ["Runtime Core", "本地优先"]},
-    {"slug": "feeling-to-jargon", "title": "Feeling to Jargon", "repo": "feeling-to-jargon", "required_content": ["两个叶子包", "渐进式索引"]},
-    {"slug": "study-anything", "title": "Study Anything", "repo": "study-anything", "required_content": ["study_context_v1", "主动回忆", "宿主应用负责"]},
-    {"slug": "superpm", "title": "superPM", "repo": "superPM", "required_content": ["单装入口不等于装齐依赖", "/validate-idea", "事实、假设和决策"]},
-    {"slug": "anything-ai", "title": "Anything-AI", "repo": "anything-ai", "site": "https://konglong87.github.io/anything-ai/", "required_content": ["Markdown + VitePress", "PDF", "npm run docs:dev"]},
-    {"slug": "free-ai-free-token", "title": "free-AI-free-token", "repo": "free-AI-free-token", "required_content": ["不承诺任何模型永久免费", "待核验", "不收录真实 API key"]}
+    {
+      "slug": "go-e2e",
+      "title": "go-e2e",
+      "repo": "go-e2e",
+      "required_content": [
+        "Runtime Core",
+        "本地优先"
+      ]
+    },
+    {
+      "slug": "feeling-to-jargon",
+      "title": "Feeling to Jargon",
+      "repo": "feeling-to-jargon",
+      "required_content": [
+        "两个叶子包",
+        "渐进式索引"
+      ]
+    },
+    {
+      "slug": "study-anything",
+      "title": "Study Anything",
+      "repo": "study-anything",
+      "required_content": [
+        "study_context_v1",
+        "主动回忆",
+        "宿主应用负责"
+      ]
+    },
+    {
+      "slug": "superpm",
+      "title": "superPM",
+      "repo": "superPM",
+      "required_content": [
+        "单装入口不等于装齐依赖",
+        "/validate-idea",
+        "事实、假设和决策"
+      ]
+    },
+    {
+      "slug": "anything-ai",
+      "title": "Anything-AI",
+      "repo": "anything-ai",
+      "site": "https://konglong87.github.io/anything-ai/",
+      "required_content": [
+        "Markdown + VitePress",
+        "PDF",
+        "npm run docs:dev"
+      ]
+    },
+    {
+      "slug": "free-ai-free-token",
+      "title": "free-AI-free-token",
+      "repo": "free-AI-free-token",
+      "required_content": [
+        "不承诺任何模型永久免费",
+        "待核验",
+        "不收录真实 API key"
+      ]
+    },
+    {
+      "slug": "hall-of-fame",
+      "title": "Hall of Fame",
+      "repo": "hall-of-fame",
+      "required_content": [
+        "智能路由",
+        "动态加载",
+        "SessionStart Hook",
+        "不是对应专家本人发布的观点"
+      ]
+    }
   ]
 }

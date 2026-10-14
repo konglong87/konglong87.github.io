@@ -38,8 +38,6 @@ class Page(HTMLParser):
                 self.references.append(attrs[key])
 
     def handle_endtag(self, tag):
-        if tag == "meta" and attrs.get("property") == "og:url":
-            self.page_url = attrs.get("content")
         if tag == "h1":
             self._in_h1 = False
 
@@ -91,6 +89,10 @@ def check_site(output, base_url):
             raise ValueError("Home page must have exactly one curated section")
         if path.parts[0] == "projects" and len(path.parts) == 3:
             project = next(item for item in projects if item["slug"] == path.parts[1])
+            html = file.read_text()
+            for required in project.get("required_content", []):
+                if required not in html:
+                    raise ValueError(f"Missing required content in {path}: {required}")
             if "".join(page.h1) != project["title"]:
                 raise ValueError(f"Wrong project title: {path}")
             expected_repo = f"https://github.com/konglong87/{project['repo']}"
