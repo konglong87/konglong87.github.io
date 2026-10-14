@@ -70,6 +70,18 @@
         "SessionStart Hook",
         "不是对应专家本人发布的观点"
       ]
+    },
+    {
+      "slug": "face-hairstyle-fit",
+      "title": "Face Hairstyle Fit",
+      "repo": "face-hairstyle-fit",
+      "required_content": [
+        "不做颜值评分",
+        "七个维度",
+        "needs_input",
+        "不做人脸识别",
+        "不联网"
+      ]
     }
   ]
 }
