@@ -1,0 +1,35 @@
+{{- $siteName := site.Params.seo_site_name | default site.Title -}}
+{{- $siteDescription := site.Params.description | default "KongLong 的公开项目与 AI 实践。" -}}
+{{- $authorName := site.Params.seo_author_name | default site.Params.name | default site.Title -}}
+{{- $authorURL := site.Params.seo_author_url | default (printf "https://github.com/%s" site.Params.github) -}}
+{{- $canonical := .Permalink -}}
+{{- $image := (site.Params.seo_default_image | default "/profile/avatar.png") | absURL -}}
+{{- $author := dict "@type" "Person" "@id" (printf "%s#person" $authorURL) "name" $authorName "url" $authorURL "sameAs" (slice $authorURL) -}}
+{{- $websiteURL := ("/" | absURL) -}}
+{{- $website := dict "@type" "WebSite" "@id" (printf "%s#website" $websiteURL) "url" $websiteURL "name" $siteName "description" $siteDescription "publisher" $author -}}
+{{- $graph := slice $author $website -}}
+{{- if .IsHome -}}
+  {{- $items := slice -}}
+  {{- range $position, $project := (sort (where site.RegularPages "Section" "projects") "Params.project_order" "asc") -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $position 1) "name" $project.Title "url" $project.Permalink) -}}
+  {{- end -}}
+  {{- $graph = $graph | append (dict "@type" "CollectionPage" "@id" (printf "%s#projects" $canonical) "url" $canonical "name" "精选项目" "description" "KongLong 正在构建和维护的公开项目。" "mainEntity" (dict "@type" "ItemList" "itemListElement" $items)) -}}
+{{- else if eq .RelPermalink "/projects/" -}}
+  {{- $items := slice -}}
+  {{- range $position, $project := (sort .RegularPages "Params.project_order" "asc") -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $position 1) "name" $project.Title "url" $project.Permalink) -}}
+  {{- end -}}
+  {{- $graph = $graph | append (dict "@type" "CollectionPage" "@id" $canonical "url" $canonical "name" .Title "description" .Description "mainEntity" (dict "@type" "ItemList" "itemListElement" $items)) -}}
+{{- else if eq .Section "projects" -}}
+  {{- $modified := .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}
+  {{- $source := dict "@type" (slice "Article" "SoftwareSourceCode") "@id" (printf "%s#project" $canonical) "url" $canonical "name" .Title "headline" .Title "description" .Description "image" $image "author" $author "publisher" $author "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" $modified "inLanguage" site.LanguageCode "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonical) "isPartOf" $website -}}
+  {{- with .Params.repo_url }}{{ $source = merge $source (dict "codeRepository" .) }}{{ end -}}
+  {{- with .Params.project_language }}{{ $source = merge $source (dict "programmingLanguage" .) }}{{ end -}}
+  {{- with .Params.project_status }}{{ $source = merge $source (dict "creativeWorkStatus" .) }}{{ end -}}
+  {{- $graph = $graph | append $source -}}
+{{- else if .IsPage -}}
+  {{- $article := dict "@type" "BlogPosting" "@id" (printf "%s#article" $canonical) "url" $canonical "headline" .Title "description" .Description "image" $image "author" $author "publisher" $author "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00") "inLanguage" site.LanguageCode "mainEntityOfPage" (dict "@type" "WebPage" "@id" $canonical) "isPartOf" $website -}}
+  {{- $graph = $graph | append $article -}}
+{{- end -}}
+{{- $payload := dict "@context" "https://schema.org" "@graph" $graph -}}
+<script type="application/ld+json">{{ $payload | jsonify | safeJS }}</script>

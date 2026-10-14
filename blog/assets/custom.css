@@ -123,3 +123,25 @@ a:focus-visible, [role="button"]:focus-visible { outline: 2px solid currentColor
   .nav-wrapper { visibility: hidden; pointer-events: none; }
   .open .nav-wrapper { visibility: visible; pointer-events: auto; }
 }
+.project-answer {
+  margin: -0.5rem 0 2.5rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--project-border);
+  border-radius: 0.75rem;
+  background: var(--project-surface);
+}
+.project-answer dl { margin: 0; }
+.project-answer dl > div {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--project-border);
+}
+.project-answer dl > div:last-child { border-bottom: 0; }
+.project-answer dt { color: var(--project-muted); font-size: 0.82rem; font-weight: 600; }
+.project-answer dd { margin: 0; font-size: 0.92rem; line-height: 1.7; }
+@media (max-width: 640px) {
+  .project-answer dl > div { grid-template-columns: 4rem minmax(0, 1fr); gap: 0.7rem; }
+  .project-answer dd { font-size: 0.88rem; }
+}

@@ -30,6 +30,7 @@ done < <(git diff --cached --name-only -z)
 # A preview URL inherited from the environment must never reach production.
 env -u HUGO_BASEURL "$ROOT/scripts/build.sh" "$ROOT/docs"
 python3 "$ROOT/scripts/check-site.py" "$ROOT/docs"
+python3 "$ROOT/scripts/check-seo.py" "$ROOT/docs"
 git add -- "${PUBLISH_PATHS[@]}"
 if ! git diff --cached --quiet; then
   GIT_AUTHOR_NAME="$AUTHOR_NAME" GIT_AUTHOR_EMAIL="$AUTHOR_EMAIL" \

@@ -1,100 +1,66 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <!-- Title -->
-  <title>{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ site.Title }}</title>
+  {{ $siteName := site.Params.seo_site_name | default site.Title }}
+  {{ $pageTitle := $siteName }}
+  {{ with .Params.seo_title }}{{ $pageTitle = . }}{{ else }}{{ if not $.IsHome }}{{ $pageTitle = printf "%s | %s" $.Title $siteName }}{{ end }}{{ end }}
+  {{ $description := site.Params.description | default (print `KongLong 的公开项目与 AI 实践。`) }}
+  {{ with .Params.seo_description }}{{ $description = . }}{{ else }}{{ if .Description }}{{ $description = .Description }}{{ else }}{{ if .Summary }}{{ $description = .Summary }}{{ end }}{{ end }}{{ end }}
+  {{ $image := (site.Params.seo_default_image | default "/profile/avatar.png") | absURL }}
+  {{ $noindex := or .Params.noindex (or (eq .Kind "taxonomy") (or (eq .Kind "term") (eq .Kind "404"))) }}
+  {{ if in .RelPermalink "/page/" }}{{ $noindex = true }}{{ end }}
 
-  <!-- Meta -->
+  <title>{{ $pageTitle }}</title>
+  <meta name="description" content="{{ $description }}" />
+  <meta name="author" content="{{ site.Params.seo_author_name | default site.Params.name | default site.Title }}" />
+  <meta name="robots" content="{{ if $noindex }}noindex,follow{{ else }}index,follow{{ end }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
   <meta name="theme-color" />
 
-  {{ $site_author := or site.Author.name site.Params.name site.Title }}
-  <!---->
-  {{ if eq .Kind "page" }}
-  <meta name="description" content="{{ .Summary }}" />
-  <meta name="author" content="{{ or .Params.author $site_author }}" />
-  {{ else }}
-  <!---->
-  <meta
-    name="description"
-    content="{{ site.Params.description | default (print `A personal blog`) }}"
-  />
-  <meta name="author" content="{{ $site_author }}" />
-  {{ end }}
+  <meta property="og:title" content="{{ $pageTitle }}" />
+  <meta property="og:description" content="{{ $description }}" />
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:site_name" content="{{ $siteName }}" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:image" content="{{ $image }}" />
+  <meta property="og:image:alt" content="{{ $siteName }}" />
+  {{ if .IsPage }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+  {{ if .IsPage }}<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ $pageTitle }}" />
+  <meta name="twitter:description" content="{{ $description }}" />
+  <meta name="twitter:image" content="{{ $image }}" />
 
-  <!-- Styles & Scripts -->
   {{ $main := resources.Get "main.css" }}
-  <!---->
   {{ $custom := resources.Get "custom.css" }}
-  <!---->
   {{ $css := slice $main $custom | resources.Concat "main.css" | minify | fingerprint "sha256" }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}" />
 
   {{ if and .IsPage (not site.Params.disableHLJS) }}
-  <script
-    defer
-    src="{{ `highlight.min.js` | absURL }}"
-    onload="hljs.initHighlightingOnLoad();"
-  ></script>
+  <script defer src="{{ `highlight.min.js` | absURL }}" onload="hljs.initHighlightingOnLoad();"></script>
   {{ end }}
 
-  <!-- Preload -->
-  {{ $dark_icon := "theme.png" }} {{ if site.Params.monoDarkIcon }} {{
-  $dark_icon := "theme.svg" }} {{ end }}
+  {{ $dark_icon := "theme.png" }}{{ if site.Params.monoDarkIcon }}{{ $dark_icon = "theme.svg" }}{{ end }}
   <link rel="preload" as="image" href="{{ $dark_icon | absURL }}" />
-
   {{ $avatar_url := $.Scratch.Get "avatar_url" }}
-  <!---->
-  {{ if $avatar_url }}
-  <link rel="preload" as="image" href="{{ $avatar_url }}" />
-  {{ end }}
-  <!---->
+  {{ with $avatar_url }}<link rel="preload" as="image" href="{{ . }}" />{{ end }}
+  {{ range $.Scratch.Get "social_list" }}<link rel="preload" as="image" href="{{ printf `%s.svg` . | absURL }}" />{{ end }}
 
-  {{ range $.Scratch.Get "social_list" }}
-  <link rel="preload" as="image" href="{{ printf `%s.svg` . | absURL }}" />
-  {{ end }}
-  <!---->
+  {{ if or .Params.math .Site.Params.math }}{{ partial "math.html" . }}{{ end }}
 
-  {{ if or .Params.math .Site.Params.math }}
-  <!---->
-  {{ partial "math.html" . }}
-  <!---->
-  {{ end }}
-  <!---->
-
-  <!-- Favicon -->
   <link rel="icon" href="{{ `favicon.ico` | absURL }}" />
   <link rel="apple-touch-icon" href="{{ `apple-touch-icon.png` | absURL }}" />
-
-  <!-- Generator -->
   {{ hugo.Generator }}
-
-  <!-- RSS -->
-  {{ range .AlternativeOutputFormats }}
-  <link
-    rel="{{ .Rel }}"
-    type="{{ .MediaType.Type }}"
-    href="{{ .Permalink }}"
-    title="{{ site.Title }}"
-  />
+  {{ range $.AlternativeOutputFormats }}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $siteName }}" />
   {{ end }}
 
-  <!-- Misc -->
   {{ if or hugo.IsProduction (eq site.Params.env "production") }}
-  <!---->
-  {{ template "_internal/google_analytics_async.html" . }}
-  <!---->
-  {{ template "_internal/google_analytics.html" . }}
-  <!---->
-  {{ template "_internal/opengraph.html" . }}
-  <!---->
-  {{ template "_internal/schema.html" . }}
-  <!---->
-  {{ template "_internal/twitter_cards.html" . }}
-  <!---->
+    {{ template "_internal/google_analytics_async.html" . }}
+    {{ template "_internal/google_analytics.html" . }}
   {{ end }}
+  {{ partial "structured-data.html" . }}
 </head>

@@ -1,15 +1,18 @@
 +++
-title = "I do"
-description = "Hugo, the world's fastest framework for building websites"
-date = "2019-02-28"
+title = "关于 KongLong"
+description = "KongLong 的公开项目、AI Skills 和实践记录。"
+summary = "了解 KongLong 正在构建的公开项目，以及这些项目的使用边界和资料来源。"
+date = "2026-10-14"
 aliases = ["about-us", "about-hugo", "contact"]
 author = "konglong"
 +++
 
+我在这里记录正在构建和维护的公开项目，重点关注 AI Skills、开发工具、学习流程和可以被复用的工作方法。
 
-- 喜
-- 欢
-- 永
-- 不
-- 过
-- 时
+## 公开项目
+
+项目入口在 [精选项目](/projects/)：每个项目都有独立文章、GitHub 仓库和明确的使用边界。文章会区分已经实现的能力、仍在实验的部分和需要使用者自行核验的结论。
+
+## 内容边界
+
+这里的项目介绍以公开仓库和项目文档为来源，不把没有执行过的调研、测试或模型调用写成已完成事实。涉及 AI 工具、模型能力、免费额度、法律、投资或个人风格建议时，应以当前官方资料和实际情况为准。

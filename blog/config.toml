@@ -2,7 +2,7 @@ baseURL = "https://konglong87.github.io"
 author = "KongLong"
 copyright = "Copyright © 2008–2099, KongLong and the sy; all rights reserved."
 paginate = 5
-languageCode = "zh"
+languageCode = "zh-CN"
 #DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 # Historical theme examples are not part of the personal blog. Existing static URLs are preserved.
@@ -30,6 +30,11 @@ buildfuture = true
   avatar = '/profile/avatar.png'
   name = 'konglong🦖'
   bio = '❤️ KL 💑️ SY ❤️'
+  description = 'KongLong 的公开项目、AI Skills、开发工具和实践记录。'
+  seo_site_name = 'KongLong 的公开项目与 AI 实践'
+  seo_author_name = 'KongLong'
+  seo_author_url = 'https://github.com/konglong87'
+  seo_default_image = '/profile/avatar.png'
 # ------------------------------
 
 # needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)

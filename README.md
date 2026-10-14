@@ -43,11 +43,19 @@ HUGO_BIN=/path/to/hugo-0.111.3 ./blog/deploy.sh "build: publish selected project
 
 日常仅构建到 `.build` 或根目录 `docs`，不再生成 `blog/public`、`blog/docs` 或 `docs/public` 的嵌套副本。原有历史副本与静态 URL 暂不删除。
 
+## SEO / GEO
+
+SEO 与 AI 搜索优化使用同一套页面事实来源，不复制项目清单。站点级标题、描述、canonical、Open Graph、JSON-LD 和项目文章的“快速了解”摘要由 Hugo 模板与 Front Matter 生成。`blog/static/robots.txt` 明确允许普通搜索爬虫、`OAI-SearchBot` 和 `GPTBot`，并声明 sitemap；`OAI-SearchBot` 用于 ChatGPT 搜索，`GPTBot` 是独立的模型训练抓取控制，两者不等同。
+
+不把 `llms.txt`、关键词堆砌、批量低质量页面或虚假结构化数据当作 GEO 手段。AI 搜索可见性以页面可抓取、实体关系清晰、事实有来源、限制写明和持续验证为准。分页使用 canonical 并从 sitemap 排除，taxonomy 页面使用 `noindex,follow`。
+
 ## 验证
 
 ```bash
 # 静态检查：路由数量、标题、链接、页面元信息 URL、资源和图片宽高。
+# SEO 检查：robots.txt、canonical、description、Open Graph、JSON-LD、分页 canonical 与 sitemap 排除。
 python3 scripts/check-site.py docs
+python3 scripts/check-seo.py docs
 
 # 发布安全回归：隔离临时仓库 + 本地 bare remote，不触及正式远端。
 python3 scripts/test-deploy.py

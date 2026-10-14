@@ -45,9 +45,36 @@ async function verifyViewport(page) {
   assert.deepEqual(duplicates, [], 'IDs must be unique');
 }
 
+async function verifySEO(page, route) {
+  const expectedPath = route.includes('/page/') ? '/' : new URL(`${BASE}${route}`).pathname;
+  const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+  assert.equal(new URL(canonical).pathname, expectedPath, `Canonical mismatch on ${route}`);
+  assert.ok((await page.locator('title').innerText()).length > 8, `Weak title on ${route}`);
+  assert.ok((await page.locator('meta[name="description"]').getAttribute('content')).length > 0, `Missing description on ${route}`);
+  assert.equal(await page.locator('meta[property="og:url"]').getAttribute('content'), canonical);
+  assert.ok((await page.locator('meta[property="og:image"]').getAttribute('content')).startsWith('http'));
+  const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+  if (!route.includes('/page/')) assert.ok(!robots.includes('noindex'), `Unexpected noindex: ${route}`);
+  const structured = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+  const types = new Set();
+  const walk = value => {
+    if (Array.isArray(value)) return value.forEach(walk);
+    if (!value || typeof value !== 'object') return;
+    const type = value['@type'];
+    (Array.isArray(type) ? type : [type]).filter(Boolean).forEach(item => types.add(item));
+    Object.values(value).forEach(walk);
+  };
+  walk(structured);
+  assert.ok(types.has('Person') && types.has('WebSite'), `Incomplete JSON-LD on ${route}`);
+  if (route.startsWith('/projects/') && route !== '/projects/') {
+    assert.ok(types.has('SoftwareSourceCode') && types.has('Article'), `Project JSON-LD missing on ${route}`);
+  }
+}
+
 async function visit(page, route) {
   const response = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' });
   assert.equal(response.status(), 200, `HTTP error on ${route}`);
+  await verifySEO(page, route);
   await verifyViewport(page);
 }
 
@@ -65,8 +92,11 @@ async function toggleTheme(page, dark) {
 async function verifyArticle(page, project, viewport) {
   await page.locator('.project-card h3 a').getByText(project.title, { exact: true }).click();
   await page.waitForURL(`${BASE}/projects/${project.slug}/`, { waitUntil: 'networkidle' });
+  await verifySEO(page, `/projects/${project.slug}/`);
   assert.equal(await page.locator('h1').innerText(), project.title);
   assert.ok((await page.title()).startsWith(project.title));
+  assert.equal(await page.locator('.project-answer').count(), 1);
+  assert.ok((await page.locator('.project-answer').innerText()).length > 80);
   const repoLink = page.locator('.project-link-primary');
   assert.equal(await repoLink.getAttribute('href'), `https://github.com/konglong87/${project.repo}`);
   assert.equal(await repoLink.getAttribute('target'), '_blank');

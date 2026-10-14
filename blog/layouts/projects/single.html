@@ -13,6 +13,15 @@
       {{ with .Params.docs_url }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Params.docs_label | default "项目文档" }} ↗</a>{{ end }}
     </div>
   </header>
+  <section class="project-answer" aria-labelledby="project-answer-title">
+    <p class="projects-kicker" id="project-answer-title">快速了解</p>
+    <dl>
+      <div><dt>一句话</dt><dd>{{ .Params.project_summary }}</dd></div>
+      <div><dt>适合谁</dt><dd>{{ .Params.project_audience }}</dd></div>
+      <div><dt>边界</dt><dd>{{ .Params.project_boundary }}</dd></div>
+      <div><dt>当前状态</dt><dd>{{ .Params.project_status }}</dd></div>
+    </dl>
+  </section>
   <div class="project-content">{{ .Content }}</div>
   <footer class="project-related">
     <p class="projects-kicker">更多精选项目</p>
