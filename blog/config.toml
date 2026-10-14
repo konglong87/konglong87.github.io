@@ -35,6 +35,7 @@ buildfuture = true
   seo_author_name = 'KongLong'
   seo_author_url = 'https://github.com/konglong87'
   seo_default_image = '/profile/avatar.png'
+  goatcounter_code = 'konglong87'
 
   [params.home_banner]
     kicker = 'KongLong 的公开项目与 AI 实践'

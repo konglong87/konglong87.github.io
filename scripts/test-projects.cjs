@@ -97,6 +97,9 @@ async function verifyArticle(page, project, viewport) {
   assert.ok((await page.title()).startsWith(project.title));
   assert.equal(await page.locator('.project-answer').count(), 1);
   assert.ok((await page.locator('.project-answer').innerText()).length > 80);
+  const viewCount = page.locator('[data-goatcounter-count]');
+  assert.equal(await viewCount.count(), 1);
+  assert.equal(await viewCount.getAttribute('data-goatcounter-path'), `/projects/${project.slug}/`);
   const repoLink = page.locator('.project-link-primary');
   assert.equal(await repoLink.getAttribute('href'), `https://github.com/konglong87/${project.repo}`);
   assert.equal(await repoLink.getAttribute('target'), '_blank');

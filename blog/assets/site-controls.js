@@ -54,6 +54,36 @@
   desktop.addEventListener('change', () => setMenu(false));
   // Restore a predictable closed state when navigating Back from the browser cache.
   window.addEventListener('pageshow', () => setMenu(false));
+
+  const viewCountNodes = [...document.querySelectorAll('[data-goatcounter-count]')];
+  const goatCounterScript = document.querySelector('script[data-goatcounter]');
+  if (!goatCounterScript) {
+    for (const node of viewCountNodes) {
+      node.textContent = '浏览量统计未启用';
+      node.dataset.state = 'disabled';
+    }
+  }
+  for (const node of viewCountNodes) {
+    if (!goatCounterScript) continue;
+    const endpoint = node.dataset.goatcounterEndpoint;
+    const path = node.dataset.goatcounterPath || window.location.pathname;
+    if (!endpoint || !path) continue;
+    fetch(`${endpoint}/counter/${encodeURIComponent(path)}.json`, { credentials: 'omit' })
+      .then(response => {
+        if (!response.ok) throw new Error(`GoatCounter responded with ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        const count = data.count ?? data.count_unique;
+        if (count === undefined) throw new Error('GoatCounter response has no count');
+        node.textContent = `浏览 ${count}`;
+        node.dataset.state = 'ready';
+      })
+      .catch(() => {
+        node.textContent = '浏览量暂不可用';
+        node.dataset.state = 'unavailable';
+      });
+  }
   document.addEventListener('keydown', event => {
     if (!root.classList.contains('open')) return;
     if (event.key === 'Escape') {

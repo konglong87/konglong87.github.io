@@ -293,3 +293,14 @@ a:focus-visible, [role="button"]:focus-visible { outline: 2px solid currentColor
 @media (prefers-reduced-motion: reduce) {
   .site-brand-link, .home-banner-projects, .social-link, .site-navigation, .home-banner-nav { transition: none !important; }
 }
+
+.project-view-count {
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: var(--project-muted);
+  white-space: nowrap;
+}
+.project-view-count[data-state="unavailable"] { opacity: 0.8; }
+@media (max-width: 640px) {
+  .project-view-count { display: block; margin: 0.35rem 0 0; }
+}

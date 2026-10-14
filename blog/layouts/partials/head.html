@@ -19,6 +19,10 @@
   <link rel="canonical" href="{{ .Permalink }}" />
   <meta name="theme-color" />
 
+  {{ if and site.Params.goatcounter_code (hasPrefix site.BaseURL `https://konglong87.github.io`) }}
+  <script data-goatcounter="https://{{ site.Params.goatcounter_code }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  {{ end }}
+
   <meta property="og:title" content="{{ $pageTitle }}" />
   <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
