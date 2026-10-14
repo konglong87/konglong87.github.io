@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# ChatGPT Search crawler. GPTBot is listed separately because search access
+# and model-training access are different controls.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://konglong87.github.io/sitemap.xml
