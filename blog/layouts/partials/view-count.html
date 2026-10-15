@@ -1,0 +1,15 @@
+{{- $page := .page -}}
+{{- $label := .label | default "浏览" -}}
+{{- $pending := .pending | default (printf "%s统计中…" $label) -}}
+{{- $unavailable := .unavailable | default (printf "%s暂不可用" $label) -}}
+{{- $disabled := .disabled | default (printf "%s统计未启用" $label) -}}
+<span
+  class="view-count"
+  data-goatcounter-count
+  data-goatcounter-endpoint="https://{{ site.Params.goatcounter_code }}.goatcounter.com"
+  data-goatcounter-path="{{ $page.RelPermalink }}"
+  data-goatcounter-label="{{ $label }}"
+  data-goatcounter-pending="{{ $pending }}"
+  data-goatcounter-unavailable="{{ $unavailable }}"
+  data-goatcounter-disabled="{{ $disabled }}"
+  aria-live="polite">{{ $pending }}</span>

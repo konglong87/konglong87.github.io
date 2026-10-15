@@ -57,17 +57,24 @@
 
   const viewCountNodes = [...document.querySelectorAll('[data-goatcounter-count]')];
   const goatCounterScript = document.querySelector('script[data-goatcounter]');
-  if (!goatCounterScript) {
-    for (const node of viewCountNodes) {
-      node.textContent = '浏览量统计未启用';
-      node.dataset.state = 'disabled';
-    }
-  }
   for (const node of viewCountNodes) {
-    if (!goatCounterScript) continue;
+    const label = node.dataset.goatcounterLabel || '浏览';
+    const pending = node.dataset.goatcounterPending || `${label}统计中…`;
+    const unavailable = node.dataset.goatcounterUnavailable || `${label}暂不可用`;
+    const disabled = node.dataset.goatcounterDisabled || `${label}统计未启用`;
+    if (!goatCounterScript) {
+      node.textContent = disabled;
+      node.dataset.state = 'disabled';
+      continue;
+    }
     const endpoint = node.dataset.goatcounterEndpoint;
     const path = node.dataset.goatcounterPath || window.location.pathname;
-    if (!endpoint || !path) continue;
+    if (!endpoint || !path) {
+      node.textContent = unavailable;
+      node.dataset.state = 'unavailable';
+      continue;
+    }
+    node.textContent = pending;
     fetch(`${endpoint}/counter/${encodeURIComponent(path)}.json`, { credentials: 'omit' })
       .then(response => {
         if (!response.ok) throw new Error(`GoatCounter responded with ${response.status}`);
@@ -76,11 +83,11 @@
       .then(data => {
         const count = data.count ?? data.count_unique;
         if (count === undefined) throw new Error('GoatCounter response has no count');
-        node.textContent = `浏览 ${count}`;
+        node.textContent = `${label} ${count}`;
         node.dataset.state = 'ready';
       })
       .catch(() => {
-        node.textContent = '浏览量暂不可用';
+        node.textContent = unavailable;
         node.dataset.state = 'unavailable';
       });
   }

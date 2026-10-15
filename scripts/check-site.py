@@ -18,6 +18,7 @@ class Page(HTMLParser):
         self.page_url = None
         self.cards = 0
         self.featured = 0
+        self.view_counts = []
         self.h1 = []
         self._in_h1 = False
         self.feed(text)
@@ -27,6 +28,8 @@ class Page(HTMLParser):
         classes = attrs.get("class", "").split()
         self.cards += "project-card" in classes
         self.featured += "projects-featured" in classes
+        if "data-goatcounter-count" in attrs:
+            self.view_counts.append(attrs)
         if tag == "meta" and attrs.get("property") == "og:url":
             self.page_url = attrs.get("content")
         if tag == "h1":
@@ -87,8 +90,22 @@ def check_site(output, base_url):
             raise ValueError(f"Wrong project card count in {path}: {page.cards}")
         if path == Path("index.html") and page.featured != 1:
             raise ValueError("Home page must have exactly one curated section")
+        if path == Path("index.html"):
+            if len(page.view_counts) != 1:
+                raise ValueError("Home page must have exactly one view-count marker")
+            view_count = page.view_counts[0]
+            if view_count.get("data-goatcounter-path") != "/":
+                raise ValueError("Home page view-count path must be /")
+            if view_count.get("data-goatcounter-label") != "首页访问量":
+                raise ValueError("Home page view-count label must be 首页访问量")
         if path.parts[0] == "projects" and len(path.parts) == 3:
             project = next(item for item in projects if item["slug"] == path.parts[1])
+            if len(page.view_counts) != 1:
+                raise ValueError(f"Project page must have exactly one view-count marker: {path}")
+            view_count = page.view_counts[0]
+            expected_view_path = f"/projects/{project['slug']}/"
+            if view_count.get("data-goatcounter-path") != expected_view_path:
+                raise ValueError(f"Wrong project view-count path in {path}: {view_count.get('data-goatcounter-path')}")
             html = file.read_text()
             for required in project.get("required_content", []):
                 if required not in html:

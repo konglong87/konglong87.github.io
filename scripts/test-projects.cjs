@@ -145,6 +145,10 @@ async function verifyAtViewport(browser, viewport) {
     assert.equal(await page.locator('.home-banner-slogan').innerText(), '喜欢永不过时');
     assert.equal(await page.locator('.home-banner-slogan').evaluate(node => Boolean(node.closest('a'))), false,
       'Homepage slogan must be decorative text, not a navigation link');
+    const homeViewCount = page.locator('[data-goatcounter-count]');
+    assert.equal(await homeViewCount.count(), 1);
+    assert.equal(await homeViewCount.getAttribute('data-goatcounter-path'), '/');
+    assert.equal(await homeViewCount.getAttribute('data-goatcounter-label'), '首页访问量');
     const bannerProjects = page.locator('.home-banner-projects');
     assert.equal(await bannerProjects.getAttribute('href'), '/projects/');
     await bannerProjects.click();

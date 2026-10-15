@@ -10,6 +10,7 @@
       <p class="home-banner-kicker">{{ $banner.kicker }}</p>
       <p class="home-banner-slogan">{{ $banner.slogan }}</p>
       <p class="home-banner-subtitle">{{ $banner.subtitle | default site.Params.description }}</p>
+      <p class="home-banner-view-count">{{ partial "view-count.html" (dict "page" . "label" "首页访问量" "pending" "首页访问量统计中…" "unavailable" "首页访问量暂不可用" "disabled" "首页访问量统计未启用") }}</p>
     </div>
     {{ with $projectsPage }}
     <a class="home-banner-projects" href="{{ .RelPermalink }}" aria-label="{{ $label }}，{{ $featuredCount }} 个项目">

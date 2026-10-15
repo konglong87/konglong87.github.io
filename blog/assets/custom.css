@@ -294,13 +294,21 @@ a:focus-visible, [role="button"]:focus-visible { outline: 2px solid currentColor
   .site-brand-link, .home-banner-projects, .social-link, .site-navigation, .home-banner-nav { transition: none !important; }
 }
 
-.project-view-count {
+.view-count {
   display: inline-block;
   margin-left: 0.35rem;
   color: var(--project-muted);
   white-space: nowrap;
 }
-.project-view-count[data-state="unavailable"] { opacity: 0.8; }
+.view-count[data-state="unavailable"] { opacity: 0.8; }
+.home-banner-view-count {
+  margin: 0.5rem 0 0;
+  color: var(--project-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+.home-banner-view-count .view-count { margin-left: 0; }
 @media (max-width: 640px) {
-  .project-view-count { display: block; margin: 0.35rem 0 0; }
+  .view-count { display: block; margin: 0.35rem 0 0; }
+  .home-banner-view-count .view-count { margin-top: 0; }
 }
