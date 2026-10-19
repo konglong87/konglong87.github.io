@@ -1,0 +1,24 @@
+{{- $paths := site.Params.home_entry_paths -}}
+{{- if $paths -}}
+<section class="home-entry-paths" aria-labelledby="home-entry-paths-title">
+  <div class="home-entry-heading">
+    <p class="home-entry-kicker">从这里开始</p>
+    <h2 id="home-entry-paths-title">选择你的下一步</h2>
+  </div>
+  <div class="home-entry-grid">
+    {{- range $paths -}}
+    {{- $isExternal := .external | default false -}}
+    <a
+      class="home-entry-card"
+      href="{{ .url }}"
+      {{ if $isExternal }}target="_blank" rel="noopener noreferrer"{{ end }}
+    >
+      <span class="home-entry-label">{{ .label }}</span>
+      <strong>{{ .title }}</strong>
+      <span class="home-entry-description">{{ .description }}</span>
+      <span class="home-entry-action">开始 →</span>
+    </a>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}

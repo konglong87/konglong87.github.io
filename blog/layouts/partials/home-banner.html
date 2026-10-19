@@ -12,13 +12,18 @@
       <p class="home-banner-subtitle">{{ $banner.subtitle | default site.Params.description }}</p>
       <p class="home-banner-view-count">{{ partial "view-count.html" (dict "page" . "label" "首页访问量" "pending" "首页访问量统计中…" "unavailable" "首页访问量暂不可用" "disabled" "首页访问量统计未启用") }}</p>
     </div>
-    {{ with $projectsPage }}
-    <a class="home-banner-projects" href="{{ .RelPermalink }}" aria-label="{{ $label }}，{{ $featuredCount }} 个项目">
-      <span>{{ $label }}</span>
-      <span class="home-banner-project-count">{{ $featuredCount }} 个</span>
-      <span aria-hidden="true">→</span>
-    </a>
-    {{ end }}
+    <div class="home-banner-actions">
+      {{ with $projectsPage }}
+      <a class="home-banner-projects" href="{{ .RelPermalink }}" aria-label="{{ $label }}，{{ $featuredCount }} 个项目">
+        <span>{{ $label }}</span>
+        <span class="home-banner-project-count">{{ $featuredCount }} 个</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      {{ end }}
+      {{ with $banner.learning_url }}
+      <a class="home-banner-learning" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $banner.learning_label | default "进入学习站" }} ↗</a>
+      {{ end }}
+    </div>
     <div class="home-banner-social">{{ partial "social-links.html" . }}</div>
     {{ partial "menu-toggle.html" . }}
     <div id="site-navigation" class="site-navigation home-banner-nav">

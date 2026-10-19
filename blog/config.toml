@@ -39,9 +39,32 @@ buildfuture = true
 
   [params.home_banner]
     kicker = 'KongLong 的公开项目与 AI 实践'
-    slogan = '喜欢永不过时'
-    subtitle = '公开项目、AI Skills、开发工具和实践记录'
-    projects_label = '精选项目'
+    slogan = '从学习到实践，把想法做成项目'
+    subtitle = '公开项目、AI 学习路径与实践记录，欢迎从一个真实项目开始。'
+    projects_label = '从精选项目开始'
+    learning_label = '进入学习站'
+    learning_url = 'https://konglong87.github.io/anything-ai/'
+
+  [[params.home_entry_paths]]
+    label = '先学 AI'
+    title = '进入学习站'
+    description = '从认知、工具到实践，建立自己的 AI 学习路径。'
+    url = 'https://konglong87.github.io/anything-ai/'
+    external = true
+
+  [[params.home_entry_paths]]
+    label = '做出项目'
+    title = '从精选项目开始'
+    description = '阅读真实项目，理解它解决什么问题，以及如何一步步做出来。'
+    url = '/projects/'
+    external = false
+
+  [[params.home_entry_paths]]
+    label = '提升效率'
+    title = '用 Skills 跑起来'
+    description = '从产品方法、AI Skills 和工作流入手，把能力变成可复用的工具。'
+    url = '/projects/superpm/'
+    external = false
 # ------------------------------
 
 # needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)

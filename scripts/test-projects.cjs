@@ -142,15 +142,25 @@ async function verifyAtViewport(browser, viewport) {
     assert.equal(await page.locator('.projects-featured .project-card').count(), PROJECTS.length);
     assert.deepEqual(await page.locator('.project-card h3').allTextContents(), PROJECTS.map(project => project.title));
     assert.ok((await page.locator('main').innerText()).includes('陛下的规矩'));
-    assert.equal(await page.locator('.home-banner-slogan').innerText(), '喜欢永不过时');
+    assert.equal(await page.locator('.home-banner-slogan').innerText(), '从学习到实践，把想法做成项目');
+    assert.equal(await page.locator('.home-banner-subtitle').innerText(), '公开项目、AI 学习路径与实践记录，欢迎从一个真实项目开始。');
     assert.equal(await page.locator('.home-banner-slogan').evaluate(node => Boolean(node.closest('a'))), false,
       'Homepage slogan must be decorative text, not a navigation link');
+    const homeEntryCards = page.locator('.home-entry-card');
+    assert.equal(await homeEntryCards.count(), 3);
+    assert.deepEqual(await homeEntryCards.evaluateAll(cards => cards.map(card => card.querySelector('.home-entry-label')?.textContent)),
+      ['先学 AI', '做出项目', '提升效率']);
+    const learningLink = page.locator('.home-banner-learning');
+    assert.equal(await learningLink.getAttribute('href'), 'https://konglong87.github.io/anything-ai/');
+    assert.equal(await learningLink.getAttribute('target'), '_blank');
+    assert.ok((await learningLink.getAttribute('rel')).includes('noopener'));
     const homeViewCount = page.locator('[data-goatcounter-count]');
     assert.equal(await homeViewCount.count(), 1);
     assert.equal(await homeViewCount.getAttribute('data-goatcounter-path'), '/');
     assert.equal(await homeViewCount.getAttribute('data-goatcounter-label'), '首页访问量');
     const bannerProjects = page.locator('.home-banner-projects');
     assert.equal(await bannerProjects.getAttribute('href'), '/projects/');
+    assert.equal(await bannerProjects.getByText('从精选项目开始', { exact: true }).count(), 1);
     await bannerProjects.click();
     await page.waitForURL(`${BASE}/projects/`, { waitUntil: 'networkidle' });
     await visit(page, '/');
