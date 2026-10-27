@@ -76,9 +76,13 @@
     }
     node.textContent = pending;
     fetch(`${endpoint}/counter/${encodeURIComponent(path)}.json`, { credentials: 'omit' })
-      .then(response => {
-        if (!response.ok) throw new Error(`GoatCounter responded with ${response.status}`);
-        return response.json();
+      .then(async response => {
+        const data = await response.json();
+        // GoatCounter returns HTTP 404 with both counters set to zero for a new path.
+        const isZero = value => value === 0 || value === '0';
+        const untrackedPath = response.status === 404 && isZero(data.count) && isZero(data.count_unique);
+        if (!response.ok && !untrackedPath) throw new Error(`GoatCounter responded with ${response.status}`);
+        return data;
       })
       .then(data => {
         const count = data.count ?? data.count_unique;

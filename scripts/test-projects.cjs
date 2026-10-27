@@ -275,6 +275,42 @@ async function verifySlowImage(browser, viewport) {
   } finally { release(); await context.close(); }
 }
 
+async function verifyViewCounterResponses(browser) {
+  const route = '/projects/niuma/';
+  const counterURL = `https://konglong87.goatcounter.com/counter/${encodeURIComponent(route)}.json`;
+  const cases = [
+    { name: 'existing', status: 200, body: { count: '13', count_unique: '13' }, state: 'ready', text: '浏览 13' },
+    { name: 'new-path', status: 404, body: { count: '0', count_unique: '0' }, state: 'ready', text: '浏览 0' },
+    { name: 'server-error', status: 503, body: { count: '0', count_unique: '0' }, state: 'unavailable', text: '浏览量暂不可用' },
+    { name: 'bad-response', status: 200, body: {}, state: 'unavailable', text: '浏览量暂不可用' },
+  ];
+  for (const scenario of cases) {
+    const context = await browser.newContext();
+    try {
+      const page = await context.newPage();
+      await page.route(`${BASE}${route}`, async request => {
+        const response = await request.fetch();
+        const original = await response.text();
+        assert.ok(original.includes('<head>'), 'Preview must have a head element');
+        await request.fulfill({ response, body: original.replace('<head>', '<head><script data-goatcounter></script>') });
+      });
+      await page.route(counterURL, request => request.fulfill({
+        status: scenario.status,
+        contentType: 'application/json',
+        headers: { 'access-control-allow-origin': '*' },
+        body: JSON.stringify(scenario.body),
+      }));
+      await page.goto(`${BASE}${route}`, { waitUntil: 'domcontentloaded' });
+      const counter = page.locator('[data-goatcounter-count]');
+      await page.waitForFunction(() => ['ready', 'unavailable'].includes(
+        document.querySelector('[data-goatcounter-count]')?.dataset.state));
+      assert.equal(await counter.getAttribute('data-state'), scenario.state, scenario.name);
+      assert.equal(await counter.innerText(), scenario.text, scenario.name);
+    } finally { await context.close(); }
+  }
+  return { scenario: 'view-count-zero-and-error-states', status: 'passed' };
+}
+
 (async () => {
   fs.mkdirSync(OUTPUT, { recursive: true });
   const browser = await chromium.launch({ headless: true });
@@ -282,6 +318,7 @@ async function verifySlowImage(browser, viewport) {
   try {
     for (const viewport of VIEWPORTS) report.push(await verifyAtViewport(browser, viewport));
     report.push(await verifyBlockedStorage(browser));
+    report.push(await verifyViewCounterResponses(browser));
     for (const viewport of VIEWPORTS.filter(item => SCREENSHOT_VIEWPORTS.has(item.name))) {
       report.push(await verifySlowImage(browser, viewport));
     }
