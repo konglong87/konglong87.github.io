@@ -56,12 +56,12 @@ python3 scripts/test-deploy.py
 PLAYWRIGHT_MODULE=/path/to/node_modules/playwright node scripts/test-projects.cjs
 ```
 
-浏览器验收覆盖 1920/1440/1024px 桌面、768px 平板、390/360/320px 手机与 844×390 横屏。实际操作导航、八张卡片、相关文章、返回入口、键盘 Enter 和暗色切换；检查主题持久化、受限 localStorage、图片加载、慢图布局稳定性、横向溢出、重复 ID、脚本错误、请求失败、内部 404，并回归原有文章与首页分页。可通过 `TEST_BASE_URL`、`TEST_OUTPUT` 指定服务和截图目录。默认截图及 JSON 报告保存在 `.build/acceptance`，不提交。
+浏览器验收覆盖 1920/1440/1024px 桌面、768px 平板、390/360/320px 手机与 844×390 横屏。实际操作导航、项目卡片、相关文章、返回入口、键盘 Enter 和暗色切换；检查主题持久化、受限 localStorage、图片加载、慢图布局稳定性、横向溢出、重复 ID、脚本错误、请求失败、内部 404，并回归原有文章与首页分页。可通过 `TEST_BASE_URL`、`TEST_OUTPUT` 指定服务和截图目录。默认截图及 JSON 报告保存在 `.build/acceptance`，不提交。
 
 历史 `exampleSite` 主题示例不参与个人博客构建，已发布的示例静态 URL 保留。
 
 ## 内容来源与边界
 
-已有六篇文章基于 2026-10-13 的公开 README 和项目文档整理；Hall of Fame 文章基于 2026-10-14 的公开 README 和安装说明整理；Face Hairstyle Fit 文章基于 2026-10-14 的公开 README、Skill 和架构说明整理。go-e2e 的 Desktop 图片来自公开仓库；Feeling to Jargon 的示例经过本地索引查询，不伪造产品界面。新增项目文章使用真实架构与使用说明，不杜撰产品截图、用户量或验证结论。
+已有六篇文章基于 2026-10-13 的公开 README 和项目文档整理；Hall of Fame 文章基于 2026-10-14 的公开 README 和安装说明整理；Face Hairstyle Fit 文章基于 2026-10-14 的公开 README、Skill 和架构说明整理。go-e2e 的 Desktop 图片来自公开仓库；Feeling to Jargon 的示例经过本地索引查询，不伪造产品界面。牛马 Niuma 文章基于 2026-10-27 的公开 README、上手文档与使用场景整理，桌面图片来自公开仓库。新增项目文章使用真实架构与使用说明，不杜撰产品截图、用户量或验证结论。
 
 Anything-AI 的知识站是独立 Pages 仓库，不由本博客构建。免费额度文章不收录真实 API key，也不保证模型永久免费、无限额度或始终可用；访问与额度以服务商当时的官方规则为准。

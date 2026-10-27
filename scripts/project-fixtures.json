@@ -82,6 +82,19 @@
         "不做人脸识别",
         "不联网"
       ]
+    },
+    {
+      "slug": "niuma",
+      "title": "牛马 Niuma",
+      "repo": "niuma",
+      "required_content": [
+        "后台任务",
+        "Checkpoint",
+        "Go 1.26+",
+        "~/.niuma/settings.json",
+        "不会复用",
+        "权限"
+      ]
     }
   ]
 }

@@ -111,9 +111,10 @@ async function verifyArticle(page, project, viewport) {
   assert.deepEqual(await page.locator('.project-related-list li > a').allTextContents(), related.map(item => `${item.title} →`));
   assert.deepEqual(await page.locator('.project-related-list li > a').evaluateAll(links => links.map(link => new URL(link.href).pathname)),
     related.map(item => `/projects/${item.slug}/`));
-  if (project.slug === 'go-e2e') {
-    await page.locator('.project-content img').evaluate(image => image.decode());
-    assert.ok(await page.locator('.project-content img').evaluate(image => image.naturalWidth > 1000 && image.width > 0 && image.height > 0));
+  for (const image of await page.locator('.project-content img').all()) {
+    await image.evaluate(node => node.decode());
+    assert.ok(await image.evaluate(node => node.naturalWidth > 0 && node.width > 0 && node.height > 0),
+      `${project.slug}: project images must load with visible dimensions`);
   }
   await verifyViewport(page);
   if (SCREENSHOT_VIEWPORTS.has(viewport.name)) {
